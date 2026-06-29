@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Xdnry777</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#0F0F0F',
+                        darker: '#070707',
+                        card: '#1A1A1A',
+                        accent: '#7C3AED',
+                        accentLight: '#A78BFA',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-text {
+            background: linear-gradient(90deg, #7C3AED, #EC4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-dark text-gray-100 min-h-screen">
+    <nav class="bg-darker border-b border-gray-800 py-4 px-6 flex justify-between items-center">
+        <div class="text-xl font-bold">
+            <span class="gradient-text">Xdnry777</span><span class="text-white">
+            
+        </div>
+        <div class="flex items-center gap-4">
+            <span id="namaAdmin" class="text-sm text-gray-400"></span>
+            <button id="btnKeluar" class="text-red-400 hover:text-red-300 text-sm">
+                <i class="fa fa-sign-out"></i> Keluar
+            </button>
+        </div>
+    </nav>
+
+    <div class="container mx-auto p-6">
+        <h1 class="text-2xl font-bold mb-6">Selamat Datang di Panel Admin</h1>
+
+        <div class="grid md:grid-cols-2 gap-6 max-w-2xl">
+            <div class="bg-card border border-gray-800 rounded-xl p-6">
+                <h3 class="font-bold text-lg mb-3 text-accentLight"><i class="fa fa-shopping-bag mr-2"></i>Kelola Toko</h3>
+                <ul class="space-y-2 text-gray-300 text-sm">
+                    <li>• Ubah Harga Barang</li>
+                    <li>• Tambah Game Baru</li>
+                    <li>• Ubah Informasi Toko</li>
+                    <li>• Ganti Logo & Banner</li>
+                </ul>
+                <p class="text-xs text-gray-500 mt-3">*Edit langsung di file index.html</p>
+            </div>
+
+            <div class="bg-card border border-gray-800 rounded-xl p-6">
+                <h3 class="font-bold text-lg mb-3 text-accentLight"><i class="fa fa-info-circle mr-2"></i>Info Toko</h3>
+                <ul class="space-y-2 text-gray-300 text-sm">
+                    <li>Status: <span class="text-green-400">Buka</span></li>
+                    <li>Kontak: 0851-6993-5089</li>
+                    <li>Pembayaran: DANA & QRIS</li>
+                    <li>Jam Buka: 10.00 - 21.00 WIB</li>
+                </ul>
+            </div>
+        </div>
+
+        <a href="index.html" class="inline-block mt-6 text-accentLight hover:text-white">
+            <i class="fa fa-arrow-left"></i> Kembali ke Halaman Utama
+        </a>
+    </div>
+
+    <script>
+        // Cek apakah sudah login
+        if(localStorage.getItem('loginAdmin') !== 'sudahLogin') {
+            alert('Silakan login dulu!');
+            window.location.href = 'login.html';
+        }
+
+        // Tampil nama admin
+        document.getElementById('namaAdmin').textContent = localStorage.getItem('namaAdmin');
+
+        // Fungsi keluar
+        document.getElementById('btnKeluar').addEventListener('click', function() {
+            localStorage.removeItem('loginAdmin');
+            localStorage.removeItem('namaAdmin');
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html>

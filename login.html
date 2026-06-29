@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Admin - Xdnry777</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#0F0F0F',
+                        darker: '#070707',
+                        card: '#1A1A1A',
+                        accent: '#7C3AED',
+                        accentLight: '#A78BFA',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-text {
+            background: linear-gradient(90deg, #7C3AED, #EC4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-dark min-h-screen flex items-center justify-center p-4">
+    <div class="bg-card border border-gray-800 rounded-2xl p-8 w-full max-w-md shadow-xl">
+        <div class="text-center mb-8">
+            <h1 class="text-2xl font-bold mb-2">
+                <span class="gradient-text">Xdnry777</span><span class="text-white">
+                
+            </h1>
+            <p class="text-gray-400">Masuk Halaman Admin</p>
+        </div>
+
+        <form id="formLogin">
+            <div class="mb-4">
+                <label class="block text-gray-300 mb-2 text-sm">Username</label>
+                <div class="relative">
+                    <i class="fa fa-user absolute left-3 top-1/2 -translate-y-1/2 text-gray-500"></i>
+                    <input type="text" id="username" class="w-full bg-dark border border-gray-700 rounded-lg py-3 pl-10 pr-4 text-white focus:outline-none focus:border-accent" placeholder="Masukkan Username" required>
+                </div>
+            </div>
+
+            <div class="mb-6">
+                <label class="block text-gray-300 mb-2 text-sm">Password</label>
+                <div class="relative">
+                    <i class="fa fa-lock absolute left-3 top-1/2 -translate-y-1/2 text-gray-500"></i>
+                    <input type="password" id="password" class="w-full bg-dark border border-gray-700 rounded-lg py-3 pl-10 pr-4 text-white focus:outline-none focus:border-accent" placeholder="Masukkan Password" required>
+                </div>
+            </div>
+
+            <div id="pesanError" class="text-red-400 text-sm mb-4 text-center hidden">Username atau Password salah!</div>
+
+            <button type="submit" class="w-full bg-accent hover:bg-accent/90 py-3 rounded-lg font-semibold transition-all">
+                <i class="fa fa-sign-in mr-1"></i> Masuk
+            </button>
+
+            <a href="index.html" class="block text-center text-gray-500 text-sm mt-4 hover:text-accentLight">
+                <i class="fa fa-arrow-left"></i> Kembali ke Toko
+            </a>
+        </form>
+    </div>
+
+    <script>
+        // ✅ UBAH USERNAME & PASSWORD SENDIRI DI SINI
+        const USER_BENAR = {
+            username: 'adminxdnry',
+            password: 'toko12345'
+        };
+
+        document.getElementById('formLogin').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
+            const error = document.getElementById('pesanError');
+
+            if(user === USER_BENAR.username && pass === USER_BENAR.password) {
+                // Simpan status login
+                localStorage.setItem('loginAdmin', 'sudahLogin');
+                localStorage.setItem('namaAdmin', user);
+                // Pindah ke halaman admin
+                window.location.href = 'admin.html';
+            } else {
+                error.classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
